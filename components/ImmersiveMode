@@ -1,1 +1,28 @@
+import {View, Text, AppState, Button, StatusBar} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  immersiveModeOn,
+  immersiveModeOff,
+} from 'react-native-android-immersive-mode';
 
+const ImmersiveMode = () => {
+  const [isImmersiveMode, setImmersiveMode] = useState(false);
+  useEffect(() => {
+    if (isImmersiveMode) {
+      immersiveModeOn();
+    } else {
+      immersiveModeOff();
+    }
+  }, [isImmersiveMode]);
+  return (
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <StatusBar backgroundColor={'red'} />
+      <Button
+        onPress={() => setImmersiveMode(!isImmersiveMode)}
+        title="Toggle ImmersiveMode"
+      />
+    </View>
+  );
+};
+
+export default ImmersiveMode;
